@@ -1,6 +1,7 @@
 {
   "name": "sharing_app_backend",
   "version": "1.0.0",
+  "type":"module",
   "description": "backend for sharing app",
   "main": "server.js",
   "scripts": {

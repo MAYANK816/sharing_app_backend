@@ -1,16 +1,16 @@
-const express = require("express");
+import express from "express";
+import Cors from 'cors';
 const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server, { cors: { origin: "*" } });
-const Cors = require("cors")
-
+import { Server } from "socket.io";
+const port = process.env.PORT || 8001;
 app.use(express.json());
 app.use(Cors());
-
 
 app.get('/', (req, res) => res.status(200).send("Hello Programmers"));
 
 
+
+/* const io = new Server(port); */
 /* io.on("connection", function (socket) {
 	socket.on("sender-join", function (data) {
 		socket.join(data.uid);
@@ -30,6 +30,6 @@ app.get('/', (req, res) => res.status(200).send("Hello Programmers"));
 	})
 }); */
 
-app.listen(8001, () => {
+app.listen(port, () => {
 	console.log("Server is Running");
 });
