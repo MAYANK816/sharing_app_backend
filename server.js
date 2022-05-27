@@ -1,13 +1,8 @@
 const express = require("express");
-const path = require("path");
-
 const app = express();
 const server = require("http").createServer(app);
-
 const io = require("socket.io")(server, { cors: { origin: "*" } });
 const cors = require("cors")
-
-
 app.use(cors());
 app.get("/", (req, res) => {
 	res.send("hello");
@@ -31,4 +26,6 @@ app.get("/", (req, res) => {
 	})
 }); */
 
-app.listen(5000);
+app.listen(5000, () => {
+	console.log("Server is Running");
+});
