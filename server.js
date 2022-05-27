@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: { origin: "*" } });
-const cors = require("cors")
+const Cors = require("cors")
 
 app.use(express.json());
-app.use(cors());
+app.use(Cors());
 
 
 app.get('/', (req, res) => res.status(200).send("Hello Programmers"));
