@@ -3,10 +3,13 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: { origin: "*" } });
 const cors = require("cors")
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(cors());
-app.get("/", (req, res) => {
-	res.send("hello");
-})
+app.get('/', (req, res) => res.status(200).send("Hello Programmers"));
+
+
 /* io.on("connection", function (socket) {
 	socket.on("sender-join", function (data) {
 		socket.join(data.uid);
@@ -26,6 +29,6 @@ app.get("/", (req, res) => {
 	})
 }); */
 
-app.listen(5000, () => {
+app.listen(8001, () => {
 	console.log("Server is Running");
 });
