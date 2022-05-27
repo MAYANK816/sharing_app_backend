@@ -8,18 +8,20 @@ app.use(express.json());
 app.use(Cors());
 
 app.get('/', (req, res) => res.status(200).send("Hello Programmers"));
+const server = app.listen(port, function () {
+	console.log(`Listening on port ${port}`);
+	console.log(`http://localhost:${port}`);
+});
 
-
-
-
-
-const httpServer = createServer();
-const io = new Server(httpServer, {
+const io = new Server(server, {
 	cors: {
-		origin: "http://localhost:3000"
+		origin: "*"
 	}
 });
+
 io.on("connection", function (socket) {
+	console.log(socket._error);
+	console.log("Connected");
 	socket.on("sender-join", function (data) {
 		socket.join(data.uid);
 	});
@@ -36,8 +38,4 @@ io.on("connection", function (socket) {
 	socket.on("file-raw", function (data) {
 		socket.in(data.uid).emit("fs-share", data.buffer);
 	})
-});
-
-app.listen(port, () => {
-	console.log("Server is Running");
 });
